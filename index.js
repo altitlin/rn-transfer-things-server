@@ -1,14 +1,19 @@
 const express = require('express')
 
 const { connectMongoDB } = require('./src/db/connect')
+const { ROOT, AUTH } = require('./src/constants/routesPaths')
 const { PORT } = require('./src/config/app')
 
-const { listen } = express()
+const app = express()
+
+app.use(express.json({ extended: true }))
+
+app.use(`${ROOT}${AUTH}`, require('./src/routers/user'))
 
 const startServer = async () => {
   try {
     await connectMongoDB()
-    listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`Server has been started on port ${PORT}`)
     })
   } catch (error) {
