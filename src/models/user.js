@@ -12,6 +12,30 @@ const userSchema = new Schema(
       required: true,
       minLength: 8,
     },
+    lastName: {
+      type: String,
+      required: true,
+    },
+    firstName: {
+      type: String,
+      required: true,
+    },
+    gender: {
+      type: String,
+      required: true,
+    },
+    birthday: {
+      type: Date,
+      required: true,
+    },
+    photo: {
+      type: String,
+      required: true,
+    },
+    comments: [Schema.Types.ObjectId],
+    chats: [Schema.Types.ObjectId],
+    messages: [Schema.Types.ObjectId],
+    coordinate: Schema.Types.ObjectId,
   },
   {
     timestamps: true,
